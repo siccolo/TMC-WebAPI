@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Result\ResultBoolean.cs" />
+    <Compile Remove="Result\ResultProduct.cs" />
+    <Compile Remove="Result\ResultSubscription.cs" />
+    <Compile Remove="Result\ResultUser.cs" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,63 @@
+﻿Coding Exercise 
+In this exercise, we’ll be creating simple API capabilities to access details about a group of users, providing the functionality of “User Management” for an admin page 
+(although it’s quite limited in what it can do, as you will learn). 
+We want to create a RESTful API to allow a user to 
+	create, query and update Users, presumably to be consumed by a frontend client application down the road. 
+Users should be able to subscribe to one or more [arbitrary, hard-coded] products/services, and the API should expose a means of showing the products currently enrolled to a given active user. 
+
+Ground Rules 
+Use .NET Core 3.0+ for this web application. Create your solution in Visual Studio 2017 or Visual Studio 2019. In your solution, go demonstrate knowledge of 
+	REST API Design, 
+	Clean/Onion Architecture pattern, 
+	Dependency Injection, 
+	Repository pattern, 
+	Services, 
+	mapping between layers of the application, 
+	separation of concerns, 
+	code reuse. 
+	Do not use an existing .NET Core / Clean Architecture boilerplate template. Please do your own work. 
+Create services to “do the work”, each having an interface and an implementation This task is intentionally vague, allowing you to make certain implementation decisions yourself. 
+Pick an implementation and stand by your work. Have a question? Don’t be afraid to ask. 
+
+Task 
+Create a REST API to allow for the management of users, and their subscription to a given Service(s). 
+	Create an entity to represent the User that has the minimum fields of: 
+		First Name, Last Name, Title, Suffix, FullName (automatic property), optional Date of Birth, SSN, Email, Password, and a way to determine if the user is active, disabled or suspended. 
+	The design should allow you to add more statuses down the road without needing to change the code on the controller / API. 
+Create an entity to represent a Service that can be “subscribed” to by a user. 
+The Service entity should have at least an Id, Name, and Price. This collection is arbitrary and can be hard coded. 
+Each user and service should have an integer unique identifier. The entity should also track the date the record was created and last modified. 
+
+
+Set up a REST API endpoint to perform the following operations: (create, query and update Users, presumably to be consumed by a frontend client application down the road.)
+Operations (these can be consolidated, if desired) 
+	Users Controller 
+		Get all Users 
+		Get an individual user by their identifier, including their subscriptions 
+		Get all Active Users 
+		Get all Suspended Users 
+		Get all Disabled Users 
+		Add a User 
+		Update a User (User.Status cannot be updated via this endpoint) 
+		Delete a User 
+	
+	Admin Controller 
+		Change Status of User (Active/Suspended/Disabled) 
+
+	Services Controller 
+		Lists an arbitrary list of services (id, name, price) 
+
+	Subscription Controller 
+		User Subscribe to a Service 
+		User Unsubscribe from a Service 
+		Get Active Subscriptions for user 
+
+The API should return “unpretty” aka (condensed, minified) JSON. 
+All REST API requests should check for the presence of an API Key in the header of the request. The value of this key should be “9876” or the request should not be considered authorized. 
+
+Your solution should have a data / entity service for each entity. The repository should be injected into the service. 
+Create an abstraction for performing the CRUD operations. The service should have an interface and an implementation and be consumed via constructor injection by the Controller. 
+You don’t actually need to interact with a live database/store. Just use an in- memory collection. Use the repository pattern. 
+Demonstrate working knowledge of LINQ to query the Users or Services collection or service and return the appropriate records (ex: active/suspended users) 
+
+Create a Tests project with a couple of tests for testing the services that you create (just a few example tests - code coverage not considered) 
